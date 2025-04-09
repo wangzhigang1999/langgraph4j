@@ -49,7 +49,7 @@ public abstract class AbstractAgentExecutorTest {
                 .checkpointSaver( saver )
                 .build();
 
-        var config = RunnableConfig.builder().threadId(threadId).build();
+        var config = RunnableConfig.builder().sessionId(threadId).build();
 
         var graph = newGraph().compile( compileConfig );
 

@@ -67,11 +67,11 @@ public class StateGraphFileSystemPersistenceTest
         CompiledGraph<State> app = workflow.compile( compileConfig );
 
         RunnableConfig runnableConfig_1 = RunnableConfig.builder()
-                                    .threadId("thread_1")
+                                    .sessionId("thread_1")
                                     .build();
 
         RunnableConfig runnableConfig_2 = RunnableConfig.builder()
-                                            .threadId("thread_2")
+                                            .sessionId("thread_2")
                                             .build();
 
         try {

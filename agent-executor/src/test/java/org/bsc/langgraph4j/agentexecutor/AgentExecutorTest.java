@@ -5,7 +5,6 @@ import org.bsc.langgraph4j.DotEnvConfig;
 import org.bsc.langgraph4j.StateGraph;
 import org.junit.jupiter.api.Disabled;
 
-@Disabled
 public class AgentExecutorTest  extends AbstractAgentExecutorTest {
 
 

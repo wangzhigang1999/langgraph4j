@@ -309,23 +309,27 @@ var graph = workflow.compile(compileConfig);
 
 We can now interact with the agent. Between interactions you can get and update state.
 
-
 ```java
 import org.bsc.langgraph4j.RunnableConfig;
 
-var runnableConfig =  RunnableConfig.builder()
-                .threadId("conversation-num-1" )
-                .build();
+var runnableConfig = RunnableConfig.builder()
+        .sessionId("conversation-num-1")
+        .build();
 
-Map<String,Object> inputs = Map.of( "messages", UserMessage.from("Hi I'm Bartolo.") );
+Map<String, Object> inputs = Map.of("messages", UserMessage.from("Hi I'm Bartolo."));
 
-var result = graph.stream( inputs, runnableConfig );
+var result = graph.stream(inputs, runnableConfig);
 
-for( var r : result ) {
-  System.out.println( r.node() );
-  System.out.println( r.state() );
-  
-}
+for(
+var r :result ){
+        System.out.
+
+println(r.node() );
+        System.out.
+
+println(r.state() );
+
+        }
 ```
 
     START 

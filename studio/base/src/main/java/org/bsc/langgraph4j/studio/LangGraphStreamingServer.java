@@ -122,7 +122,7 @@ public interface LangGraphStreamingServer {
          */
         RunnableConfig runnableConfig(PersistentConfig config) {
             return RunnableConfig.builder()
-                    .threadId(config.threadId())
+                    .sessionId(config.threadId())
                     .build();
         }
 
@@ -200,7 +200,7 @@ public interface LangGraphStreamingServer {
                     var node = request.getParameter("node");
 
                     var runnableConfig = RunnableConfig.builder()
-                            .threadId(threadId)
+                            .sessionId(threadId)
                             .checkPointId(checkpointId)
                             .nextNode(node)
                             .build();

@@ -1,5 +1,6 @@
 package org.bsc.langgraph4j;
 
+import lombok.extern.slf4j.Slf4j;
 import org.bsc.async.AsyncGenerator;
 import org.bsc.langgraph4j.action.AsyncNodeAction;
 import org.bsc.langgraph4j.action.AsyncNodeActionWithConfig;
@@ -26,14 +27,15 @@ import static java.util.stream.Collectors.toList;
 import static org.bsc.langgraph4j.StateGraph.END;
 import static org.bsc.langgraph4j.StateGraph.START;
 
+
 /**
  * Represents a compiled graph of nodes and edges.
  * This class manage the StateGraph execution
  *
  * @param <State> the type of the state associated with the graph
  */
+@Slf4j
 public class CompiledGraph<State extends AgentState> {
-    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(CompiledGraph.class);
 
     public enum StreamMode {
         VALUES,
@@ -291,7 +293,7 @@ public class CompiledGraph<State extends AgentState> {
         if( compileConfig.checkpointSaver().isPresent() ) {
             var cp =  Checkpoint.builder()
                                 .nodeId( nodeId )
-                                .state( cloneState(state) )
+//                                .state( cloneState(state) )
                                 .nextNodeId( nextNodeId )
                                 .build();
             compileConfig.checkpointSaver().get().put( config, cp );

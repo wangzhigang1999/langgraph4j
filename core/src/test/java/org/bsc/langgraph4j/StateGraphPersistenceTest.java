@@ -125,7 +125,7 @@ public class StateGraphPersistenceTest
         // Test checkpoints are saved
         newState = new AgentState( Map.of( "input", "test2", "agent_1:prop1", "agent_1:test") );
         saver.put( runnableConfig, Checkpoint.builder()
-                .state( newState )
+//                .state( newState )
                 .nodeId( "agent_1")
                 .nextNodeId(END)
                 .build() ) ;
@@ -184,7 +184,7 @@ public class StateGraphPersistenceTest
         Map<String, Object> inputs = Map.of( "steps", 0 );
 
         var runnableConfig = RunnableConfig.builder()
-                                    .threadId("thread_1")
+                                    .sessionId("thread_1")
                                     .build();
 
         var state = app.invoke( inputs, runnableConfig );
@@ -209,7 +209,7 @@ public class StateGraphPersistenceTest
 
         // SUBMIT NEW THREAD 2
         runnableConfig = RunnableConfig.builder()
-                .threadId("thread_2").build();
+                .sessionId("thread_2").build();
 
         state = app.invoke( emptyMap(), runnableConfig );
 
@@ -261,7 +261,7 @@ public class StateGraphPersistenceTest
         Map<String, Object> inputs = Map.of( "messages", "whether in Naples?") ;
 
         var runnableConfig = RunnableConfig.builder()
-                .threadId("thread_1")
+                .sessionId("thread_1")
                 .build();
 
         var results = app.streamSnapshots( inputs, runnableConfig ).stream().collect( Collectors.toList() );
@@ -339,7 +339,7 @@ public class StateGraphPersistenceTest
         var app = workflow.compile( compileConfig );
 
         var runnableConfig = RunnableConfig.builder()
-                .threadId("thread_1")
+                .sessionId("thread_1")
                 .build();
 
         log.info( "FIRST CALL WITH INTERRUPT BEFORE 'tools'");

@@ -339,24 +339,36 @@ var compileConfig = CompileConfig.builder()
 var persistentGraph = workflow.compile( compileConfig );
 ```
 
-
 ```java
 import org.bsc.langgraph4j.RunnableConfig;
 
-var runnableConfig =  RunnableConfig.builder()
-                .threadId("conversation-num-1" )
-                .build();
+var runnableConfig = RunnableConfig.builder()
+        .sessionId("conversation-num-1")
+        .build();
 
-Map<String,Object> inputs = Map.of( "messages", AiMessage.from("Hi I'm Bartolo, niced to meet you.") );
+Map<String, Object> inputs = Map.of("messages", AiMessage.from("Hi I'm Bartolo, niced to meet you."));
 
-var result = persistentGraph.stream( inputs, runnableConfig );
+var result = persistentGraph.stream(inputs, runnableConfig);
 
-for( var r : result ) {
-  System.out.println( r.node() );
-  if( r.node().equals("agent")) {
-    System.out.println( r.state().lastMessage().orElse(null) );
-  }
-}
+for(
+var r :result ){
+        System.out.
+
+println(r.node() );
+        if(r.
+
+node().
+
+equals("agent")){
+        System.out.
+
+println(r.state().
+
+lastMessage().
+
+orElse(null) );
+        }
+        }
 ```
 
     __START__

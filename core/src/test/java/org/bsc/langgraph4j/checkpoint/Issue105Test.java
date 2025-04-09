@@ -3,8 +3,6 @@ package org.bsc.langgraph4j.checkpoint;
 import org.bsc.langgraph4j.RunnableConfig;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -31,7 +29,7 @@ public class Issue105Test {
 
                     var threadName = format( "thread-%d", index.incrementAndGet() );
                     System.out.println( threadName );
-                    memorySaver.list(RunnableConfig.builder().threadId(threadName).build());
+                    memorySaver.list(RunnableConfig.builder().sessionId(threadName).build());
 
                 } finally {
                     latch.countDown();

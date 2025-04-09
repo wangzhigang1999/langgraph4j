@@ -12,7 +12,7 @@ import static java.lang.String.format;
  * without permanently altering the original configuration.
  */
 public final class RunnableConfig {
-    private String threadId;
+    private String sessionId;
     private String checkPointId;
     private String nextNode;
     private CompiledGraph.StreamMode streamMode = CompiledGraph.StreamMode.VALUES;
@@ -30,8 +30,8 @@ public final class RunnableConfig {
      *
      * @return the thread ID wrapped in an {@code Optional}, or an empty {@code Optional} if no thread ID is set.
      */
-    public Optional<String> threadId() {
-        return Optional.ofNullable(threadId);
+    public Optional<String> sessionId() {
+        return Optional.ofNullable(sessionId);
     }
     /**
      * Returns the current {@code checkPointId} wrapped in an {@link Optional}.
@@ -123,11 +123,11 @@ public final class RunnableConfig {
         /**
          * Sets the ID of the thread.
          *
-         * @param threadId the ID of the thread to set
+         * @param sessionId the ID of the thread to set
          * @return a reference to this {@code Builder} object so that method calls can be chained together
          */
-        public Builder threadId(String threadId) {
-            this.config.threadId = threadId;
+        public Builder sessionId(String sessionId) {
+            this.config.sessionId = sessionId;
             return this;
         }
         /**
@@ -178,7 +178,7 @@ public final class RunnableConfig {
      */
     private RunnableConfig( RunnableConfig config ) {
         Objects.requireNonNull( config, "config cannot be null" );
-        this.threadId = config.threadId;
+        this.sessionId = config.sessionId;
         this.checkPointId = config.checkPointId;
         this.nextNode = config.nextNode;
         this.streamMode = config.streamMode;
@@ -191,7 +191,7 @@ public final class RunnableConfig {
     @Override
     public String toString() {
         return  format("RunnableConfig{ threadId=%s, checkPointId=%s, nextNode=%s, streamMode=%s }" ,
-                threadId,
+                sessionId,
                 checkPointId,
                 nextNode,
                 streamMode

@@ -48,7 +48,6 @@ var chatLanguageModel = OllamaChatModel.builder()
 
 ```
 
-
 ```java
 import org.bsc.langgraph4j.action.NodeActionWithConfig;
 import org.bsc.langgraph4j.RunnableConfig;
@@ -72,11 +71,11 @@ class TestAction implements NodeActionWithConfig<State> {
     @Override
     public Map<String, Object> apply(State state, RunnableConfig runnableConfig) throws Exception {
         var conversation = state.<String>value("conversation")
-                                .orElseThrow(() -> new IllegalStateException("No conversation found in state"));
+                .orElseThrow(() -> new IllegalStateException("No conversation found in state"));
 
-        var threadId = runnableConfig.threadId().orElse( "unknown" );
+        var threadId = runnableConfig.sessionId().orElse("unknown");
 
-        return Map.of("response", testAssistant.test( threadId, conversation));
+        return Map.of("response", testAssistant.test(threadId, conversation));
     }
 
     public interface TestAssistant {
@@ -101,7 +100,6 @@ var workflow =  new StateGraph<>(State.SCHEMA, State::new)
             .addEdge("agent", END);
 ```
 
-
 ```java
 import org.bsc.langgraph4j.checkpoint.MemorySaver;
 import org.bsc.langgraph4j.CompileConfig;
@@ -113,27 +111,51 @@ var compileConfig = CompileConfig.builder()
         .build();
 
 var runnableConfig1 = RunnableConfig.builder()
-        .threadId("conversation-num-1")
+        .sessionId("conversation-num-1")
         .build();
 var runnableConfig2 = RunnableConfig.builder()
-        .threadId("conversation-num-2")
+        .sessionId("conversation-num-2")
         .build();
 
 var app = workflow.compile(compileConfig);
 
-app.invoke( Map.of("conversation", "Hi, my name is Chris"), runnableConfig1 )
-        .map( r -> r.data() )
-        .ifPresent( System.out::println  );
+app.
 
-app.invoke( Map.of("conversation", "what's my name ?"), runnableConfig1 )
-        .map( r -> r.data() )
-        .ifPresent( System.out::println );
+invoke(Map.of("conversation", "Hi, my name is Chris"),runnableConfig1 )
+        .
 
-app.invoke( Map.of("conversation", "What's my name ?"), runnableConfig2 )
-        .map( r -> r.data() )
-        .ifPresent( System.out::println );
+map(r ->r.
 
-    
+data() )
+        .
+
+ifPresent(System.out::println);
+
+app.
+
+invoke(Map.of("conversation", "what's my name ?"),runnableConfig1 )
+        .
+
+map(r ->r.
+
+data() )
+        .
+
+ifPresent(System.out::println);
+
+app.
+
+invoke(Map.of("conversation", "What's my name ?"),runnableConfig2 )
+        .
+
+map(r ->r.
+
+data() )
+        .
+
+ifPresent(System.out::println);
+
+
 ```
 
     START 

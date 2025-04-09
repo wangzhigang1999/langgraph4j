@@ -52,7 +52,7 @@ public class FileSystemSaver extends MemorySaver {
     }
 
     private File getFile(RunnableConfig config) {
-        return config.threadId()
+        return config.sessionId()
                 .map( threadId -> Paths.get( targetFolder.toString(), format( "thread-%s.saver", threadId) ) )
                 .orElseGet( () -> Paths.get( targetFolder.toString(), "thread-$default.saver" ) )
                 .toFile();
@@ -154,7 +154,7 @@ class CheckPointSerializer implements NullableObjectSerializer<Checkpoint> {
                 .id( in.readUTF() )
                 .nextNodeId( readNullableUTF(in).orElse(null) )
                 .nodeId( readNullableUTF(in).orElse(null) )
-                .state( stateSerializer.read(in) )
+//                .state( stateSerializer.read(in) )
                 .build();
     }
 
