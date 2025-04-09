@@ -99,7 +99,7 @@ public class StateGraph<State extends AgentState> {
 
     private final Map<String, Channel<?>> channels;
 
-    private final StateSerializer<State> stateSerializer;
+//    private final StateSerializer<State> stateSerializer;
 
     /**
      *
@@ -109,7 +109,7 @@ public class StateGraph<State extends AgentState> {
     public StateGraph(Map<String, Channel<?>> channels,
                       StateSerializer<State> stateSerializer) {
         this.channels = channels;
-        this.stateSerializer = Objects.requireNonNull(stateSerializer, "stateSerializer cannot be null");
+//        this.stateSerializer = Objects.requireNonNull(stateSerializer, "stateSerializer cannot be null");
     }
 
     /**
@@ -119,7 +119,6 @@ public class StateGraph<State extends AgentState> {
      */
     public StateGraph( StateSerializer<State> stateSerializer) {
         this( Map.of(), stateSerializer );
-
     }
 
     /**
@@ -141,12 +140,12 @@ public class StateGraph<State extends AgentState> {
         this( channels, new ObjectStreamStateSerializer<>(stateFactory) );
     }
 
-    public StateSerializer<State> getStateSerializer() {
-         return stateSerializer;
-    }
+//    public StateSerializer<State> getStateSerializer() {
+//         return stateSerializer;
+//    }
 
     public final AgentStateFactory<State> getStateFactory() {
-        return stateSerializer.stateFactory();
+        return stringObjectMap -> (State) new AgentState(stringObjectMap);
     }
 
     public Map<String, Channel<?>> getChannels() {
